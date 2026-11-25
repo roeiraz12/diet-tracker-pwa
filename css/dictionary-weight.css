@@ -1,0 +1,98 @@
+/* owned by agent: dictionary-weight */
+
+/* ===== Dictionary ===== */
+.dict-tabs { margin-bottom: 10px; }
+.dict-tabs .chip { min-height: 40px; padding: 8px 18px; font-size: .95rem; }
+.dict-toolbar { display: flex; gap: 8px; margin-bottom: 12px; }
+.dict-toolbar .dict-search { flex: 1; min-width: 0; }
+.dict-toolbar .dict-add { flex: 0 0 auto; white-space: nowrap; }
+.dict-list-card { padding: 4px 14px; }
+.dict-list > li { padding: 0; }
+.dict-row {
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: 56px;
+  padding: 10px 0; border: 0; background: none; font: inherit; color: inherit;
+  text-align: start; cursor: pointer;
+}
+.dict-row:active { background: var(--bg); }
+.dict-row-main { flex: 1; min-width: 0; }
+.dict-name { font-weight: 600; overflow-wrap: anywhere; }
+.dict-kcal { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; text-align: end; line-height: 1.2; }
+.dict-kcal b { font-size: 1.05rem; }
+.dict-kcal .muted { font-size: .75rem; }
+.dict-empty p { margin: 8px 0 0; }
+.dict-warn-text { color: var(--warn); }
+
+/* forms */
+.dict-sub { border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
+.dict-sub > .muted:first-child { margin-bottom: 8px; }
+.dict-macros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.dict-macros input { padding: 11px 8px; min-width: 0; }
+.dict-sub .row input { min-width: 0; }
+.dict-serving-preview:not(:empty) { margin-top: 6px; }
+.dict-msgs .alert:last-child { margin-bottom: 0; }
+.dict-delete { width: 100%; margin-top: 8px; color: var(--danger); }
+
+/* recipe ingredients */
+.dict-ings > li { padding: 10px 0; }
+.dict-ings-empty { border: 0 !important; }
+.dict-ing-head { display: flex; align-items: center; gap: 8px; }
+.dict-ing-head .dict-name { flex: 1; min-width: 0; }
+.dict-remove {
+  flex: 0 0 auto; width: 40px; height: 40px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+  font-size: 1rem; cursor: pointer;
+}
+.dict-ing-qty { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.dict-ing-qty .dict-qty { flex: 0 0 84px; width: 84px; padding: 9px 8px; }
+.dict-ing-qty .dict-unit { flex: 0 0 auto; width: auto; max-width: 120px; padding: 9px 8px; }
+.dict-unit-fixed { flex: 0 0 auto; color: var(--muted); }
+.dict-ing-kcal { flex: 1; text-align: end; font-size: .85rem; }
+.dict-add-ing { margin-top: 8px; }
+.dict-picker { margin-top: 8px; }
+.dict-picker-list { max-height: 260px; overflow-y: auto; margin-top: 6px; }
+.dict-picker-list > li { padding: 0; }
+.dict-pick {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px; width: 100%;
+  min-height: 46px; padding: 8px 4px; border: 0; background: none; font: inherit; color: inherit;
+  text-align: start; cursor: pointer;
+}
+.dict-pick:active { background: var(--bg); }
+.dict-pick .muted { flex: 0 0 auto; }
+
+.dict-totals { background: var(--primary-soft); box-shadow: none; margin: 0; padding: 12px; }
+.dict-totals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dict-totals-grid > div { display: flex; flex-direction: column; }
+.dict-totals-grid b { font-size: 1.35rem; line-height: 1.2; }
+.dict-totals-grid .muted { font-size: .8rem; }
+.dict-totals-macros { margin-top: 8px; font-size: .8rem; }
+
+/* ===== Weight ===== */
+.wt-fields { display: grid; grid-template-columns: 1fr 1.2fr; gap: 10px; }
+.wt-fields input { min-width: 0; }
+.wt-msg:not(:empty) { margin-top: 10px; }
+.wt-form .btn { margin-top: 12px; }
+.wt-empty p { margin: 8px 0 0; }
+.wt-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; font-size: .8rem; }
+.wt-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--protein); vertical-align: middle; }
+.wt-dash { display: inline-block; width: 16px; border-top: 2px dashed var(--primary); vertical-align: middle; }
+.wt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.wt-grid > div { display: flex; flex-direction: column; gap: 2px; }
+.wt-grid .muted { font-size: .8rem; }
+.wt-grid b { font-size: 1.1rem; }
+.wt-change.down, .wt-delta.down { color: var(--primary); }
+.wt-change.up, .wt-delta.up { color: var(--danger); }
+.wt-target { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+.wt-target b { font-size: 1.3rem; }
+.wt-note { font-size: .8rem; margin-top: 4px; }
+.wt-settings { margin-top: 12px; }
+.wt-history { padding-bottom: 6px; }
+.wt-row { display: flex; align-items: center; gap: 10px; padding: 6px 0 !important; }
+.wt-row-date { flex: 1; }
+.wt-row-kg { flex: 0 0 auto; display: flex; align-items: baseline; gap: 6px; }
+.wt-delta { font-size: .8rem; }
+.wt-del {
+  flex: 0 0 auto; width: 44px; height: 44px; border: 0; background: none;
+  border-radius: 10px; font-size: 1.1rem; cursor: pointer; filter: grayscale(1); opacity: .6;
+}
+.wt-del:active { background: var(--danger-soft); }
+.dict-form [hidden] { display: none !important; }

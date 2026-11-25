@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="דיאטה">
+  <title>יומן דיאטה</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/home-summary.css">
+  <link rel="stylesheet" href="css/dictionary-weight.css">
+  <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1 id="page-title">יומן דיאטה</h1>
+  </header>
+  <div id="banner-area"></div>
+  <main id="view" class="view"></main>
+  <nav class="bottom-nav" id="nav">
+    <button data-route="home"><span class="ico">➕</span><span>הוספה</span></button>
+    <button data-route="summary"><span class="ico">📊</span><span>סיכום</span></button>
+    <button data-route="dictionary"><span class="ico">📖</span><span>מילון</span></button>
+    <button data-route="weight"><span class="ico">⚖️</span><span>שקילות</span></button>
+    <button data-route="settings"><span class="ico">⚙️</span><span>הגדרות</span></button>
+  </nav>
+  <div id="modal-root"></div>
+  <div id="toast-root"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

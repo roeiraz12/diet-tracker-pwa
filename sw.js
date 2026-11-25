@@ -1,6 +1,6 @@
 // Service worker: offline cache for the app files.
 // כשמעדכנים קבצים באתר – מעלים את המספר כאן (v1 -> v2) כדי שהטלפון יקבל את הגרסה החדשה.
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = `diet-app-${VERSION}`;
 
 const FILES = [

@@ -3,11 +3,11 @@
 
 import { state, exportJSON, markBackedUp, currentWeight } from './store.js';
 import { computeTarget, dayKey, toKey } from './calc.js';
+import { isBackupDue } from './backup.js';
 import { esc, toast } from './ui.js';
 import { updateAvailable, applyUpdate } from './pwa.js';
 
 const MAX_BANNERS = 1; // one at a time – banners otherwise eat a quarter of a phone screen
-const BACKUP_DAYS = 7;
 const K_BACKUP_DISMISS = 'diet-banner-backup-dismissed'; // value: date key of the day it was dismissed
 const K_INSTALL_DISMISS = 'diet-banner-install-dismissed';
 
@@ -27,16 +27,8 @@ export function isIOS() {
   return /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 }
 
-function hasData() {
-  return state.foods.length > 0 || state.recipes.length > 0 ||
-    Object.keys(state.log).length > 0 || state.weights.length > 0;
-}
-
 export function backupDue() {
-  const last = state.settings.lastBackup;
-  if (!last) return hasData();
-  const age = Date.now() - new Date(last).getTime();
-  return !(age >= 0 && age < BACKUP_DAYS * 86400000);
+  return isBackupDue(state);
 }
 
 /**

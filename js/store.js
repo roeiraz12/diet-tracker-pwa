@@ -1,38 +1,12 @@
 // Single source of truth. All data lives in localStorage under one key.
 // Views read `state` and call mutators; every mutator persists and notifies.
 
+import { SCHEMA_VERSION, defaultSettings, emptyState, migrate, buildBackup, parseBackup } from './backup.js';
+export { SCHEMA_VERSION, defaultSettings };
+
 const KEY = 'diet-app-v1';
-export const SCHEMA_VERSION = 1;
 
 export const MEALS = ['בוקר', 'ביניים 1', 'צהריים', 'ביניים 2', 'ערב', 'ביניים 3'];
-
-export function defaultSettings() {
-  return {
-    sex: null,            // 'male' | 'female'
-    age: null,            // years
-    heightCm: null,
-    startKg: null,        // weight when goal was set
-    goalKg: null,
-    goalDate: null,       // 'YYYY-MM-DD'
-    activity: 1.375,      // multiplier, see calc.ACTIVITY_LEVELS
-    dietType: 'balanced', // 'balanced' | 'lowcarb' | 'keto'
-    manualTarget: null,   // kcal override, null = auto
-    mealPct: [25, 8, 25, 8, 25, 9], // must sum to 100
-    dayStartHour: 4,
-    lastBackup: null,     // ISO timestamp
-  };
-}
-
-function emptyState() {
-  return {
-    version: SCHEMA_VERSION,
-    foods: [],    // Food[]
-    recipes: [],  // Recipe[]
-    log: {},      // { 'YYYY-MM-DD': LogEntry[] }
-    weights: [],  // { date:'YYYY-MM-DD', kg:number }[] sorted by date asc
-    settings: defaultSettings(),
-  };
-}
 
 /*
 Food   = { id, name, kcal100, protein100|null, carbs100|null, fat100|null,
@@ -58,14 +32,6 @@ function load() {
     console.error('load failed', e);
     return emptyState();
   }
-}
-
-function migrate(s) {
-  const base = emptyState();
-  const out = { ...base, ...s };
-  out.settings = { ...defaultSettings(), ...(s.settings || {}) };
-  out.version = SCHEMA_VERSION;
-  return out;
 }
 
 export function save() {
@@ -169,17 +135,11 @@ export function updateSettings(patch) {
 
 /* ---------- Backup ---------- */
 export function exportJSON() {
-  return JSON.stringify({ app: 'diet-app', exportedAt: new Date().toISOString(), data: state }, null, 2);
+  return buildBackup(state);
 }
 /** Throws with a Hebrew message on invalid input. Replaces all data. */
 export function importJSON(text) {
-  let parsed;
-  try { parsed = JSON.parse(text); } catch { throw new Error('הקובץ אינו קובץ גיבוי תקין'); }
-  const data = parsed && parsed.app === 'diet-app' ? parsed.data : null;
-  if (!data || !Array.isArray(data.foods) || typeof data.log !== 'object') {
-    throw new Error('הקובץ אינו קובץ גיבוי של האפליקציה');
-  }
-  state = migrate(data);
+  state = parseBackup(text);
   save();
 }
 export function markBackedUp() { updateSettings({ lastBackup: new Date().toISOString() }); }

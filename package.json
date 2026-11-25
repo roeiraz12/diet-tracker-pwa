@@ -1,0 +1,14 @@
+{
+  "name": "diet-tracker-pwa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private, local-only food and weight diary PWA (vanilla JS, Hebrew RTL).",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
